@@ -1,2 +1,2 @@
-web: gunicorn vizsla.vizsla.wsgi
-release: python vizsla/manage.py migrate
+web: gunicorn vizsla.wsgi
+release: python manage.py migrate
