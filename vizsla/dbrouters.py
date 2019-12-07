@@ -12,11 +12,3 @@ class AppRouter:
             return model._meta.app_label
         return None
 
-    def allow_relation(self, obj1, obj2, **hints):
-        return None
-
-    def allow_migrate(self, db, app_label, model_name=None, **hints):
-        if app_label in settings.APP_SCHEMAS:
-            return True
-        return None
-
