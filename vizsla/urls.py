@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+    path('numista/', include('numista.urls')),
     path('coincatalog/', include('coincatalog.urls')),
     path('admin/', admin.site.urls),
 ]
