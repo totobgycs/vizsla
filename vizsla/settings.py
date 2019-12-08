@@ -82,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'OPTIONS': {
-                        'options': '-c search_path=django,public'
-                    },
+            'options': '-c search_path=django,public'
+        },
         'NAME': 'vizsla',
         'USER': 'fovizsla',
         'PASSWORD': 'fueloep2019',
