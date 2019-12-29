@@ -100,6 +100,17 @@ DATABASES = {
         'PASSWORD': 'fueloep2019',
         'HOST': '127.0.0.1',
         'PORT': '5432',
+        'TEST': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'OPTIONS': {
+                'options': '-c search_path=numista,public'
+            },
+            'NAME': 'test_vizsla',
+            'USER': 'fovizsla',
+            'PASSWORD': 'fueloep2019',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
     }
 }
 
