@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'coincatalog',
+    'numista'
 ]
 
 MIDDLEWARE = [
@@ -78,11 +80,43 @@ WSGI_APPLICATION = 'vizsla.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'OPTIONS': {
+            'options': '-c search_path=django,public'
+        },
+        'NAME': 'vizsla',
+        'USER': 'fovizsla',
+        'PASSWORD': 'fueloep2019',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    },
+    'numista': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'OPTIONS': {
+            'options': '-c search_path=numista,public'
+        },
+        'NAME': 'vizsla',
+        'USER': 'fovizsla',
+        'PASSWORD': 'fueloep2019',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+        'TEST': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'OPTIONS': {
+                'options': '-c search_path=numista,public'
+            },
+            'NAME': 'test_vizsla',
+            'USER': 'fovizsla',
+            'PASSWORD': 'fueloep2019',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
     }
 }
 
+DATABASE_ROUTERS = ['vizsla.dbrouters.AppRouter']
+
+APP_SCHEMAS = ['numista']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
