@@ -11,7 +11,22 @@ class Country(models.Model):
     name = models.CharField(max_length=200)
     
     def __str__(self):
-        return self.code + ': ' + self.name
+        return '{r.code}: {r.name}'.format(r=self) 
 
     class Meta:
         db_table = 'numista\".\"country'
+
+class Currency(models.Model):
+    # currency{
+    # id*	integer
+    #       Unique ID of the currency on Numista
+    # name*	string
+    #       Name of the currency}
+    numistaId = models.IntegerField(unique=True)
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return '{r.numistaId}: {r.name}'.format(r=self)
+
+    class Meta:
+        db_table = 'numista\".\"currency'
