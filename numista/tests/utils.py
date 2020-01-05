@@ -1,15 +1,25 @@
 class Consts:
-    COUNTRY_NAME_1='CON1'
-    COUNTRY_CODE_1='COC1'
 
-    COUNTRY_NAME_2='CON2'
-    COUNTRY_CODE_2='COC2'
+    class __code_base:
+        CODE_1='Co1'
+        CODE_2='C02'
 
-    CURRENCY_NAME_1='CUN1'
-    CURRENCY_CODE_1=1
+    class __name_base:
+        NAME_1='Name1'
+        NAME_2='Name2'
 
-    CURRENCY_NAME_2='CUN2'
-    CURRENCY_CODE_2=2
+    class __numista_id_base:
+        NUMISTA_ID_1=1
+        NUMISTA_ID_2=2
+
+    class __year_base:
+        YEAR_1=2019
+        YEAR_2=2020
+
+    class COUNTRY(__code_base, __name_base): pass
+    class CURRENCY(__numista_id_base, __name_base): pass
+    class ISSUE(__numista_id_base, __year_base): pass
+
 
 
 class RunOnce:
