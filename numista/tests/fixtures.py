@@ -23,3 +23,19 @@ class FixtureCurrencies:
             name = Consts.CURRENCY.NAME_1
        )
        cls.CURRENCY_1.save()
+
+from numista.models import Coin
+class FixtureCoins:
+
+    @classmethod
+    @RunOnce
+    def init_Coins(cls):
+       FixtureCountries.init_Countries()
+       FixtureCurrencies.init_Currencies()
+       cls.COIN_1 = Coin(
+            numistaId = Consts.COIN.NUMISTA_ID_1,
+            title = Consts.COIN.NAME_1,
+            country = FixtureCountries.COUNTRY_1,
+            valueCurrency = FixtureCurrencies.CURRENCY_1
+       )
+       cls.COIN_1.save()

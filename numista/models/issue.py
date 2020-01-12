@@ -21,6 +21,7 @@ class Issue(models.Model):
     #         Mint letter
     # comment	string
     #         Comment about the issue}
+    coin = models.ForeignKey('Coin', on_delete=models.CASCADE)
     numistaId = models.IntegerField(unique=True)
     isDated = models.BooleanField()
     year = models.IntegerField()
@@ -32,7 +33,7 @@ class Issue(models.Model):
     comment = models.TextField()
 
     def __str__(self):
-        return '{r.numistaId}: {r.year}'.format(r=self)
+        return '{r.numistaId}: {r.coin.title} {r.year}'.format(r=self)
 
     class Meta:
         db_table = 'numista\".\"issue'

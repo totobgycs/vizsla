@@ -1,6 +1,7 @@
 from django.test import TestCase
 from numista.models import Issue
-from numista.tests.utils import Consts
+from .utils import Consts
+from .fixtures import FixtureCoins
 import django.db.utils
 
 class test_numista_model(TestCase):
@@ -9,12 +10,12 @@ class test_numista_model(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # FixtureLanguages.init_languages()
-        # FixtureMessages.init_messages()
+        FixtureCoins.init_Coins()
 
       
     def test_add(self):
         issue=Issue(
+            coin = FixtureCoins.COIN_1,
             numistaId = Consts.ISSUE.NUMISTA_ID_1,
             isDated = True,
             year = Consts.ISSUE.YEAR_1
@@ -25,10 +26,11 @@ class test_numista_model(TestCase):
 
         # self.assertEqual(result.count, 1)
         self.assertEqual(result.year, Consts.ISSUE.YEAR_1)
-        self.assertEqual(str(result), '{}: {}'.format(Consts.ISSUE.NUMISTA_ID_1, Consts.ISSUE.YEAR_1))
+        self.assertEqual(str(result), '{}: {} {}'.format(Consts.ISSUE.NUMISTA_ID_1, Consts.COIN.NAME_1, Consts.ISSUE.YEAR_1))
 
     def test_add_duplicate_fails(self):
         issue=Issue(
+            coin = FixtureCoins.COIN_1,
             numistaId = Consts.ISSUE.NUMISTA_ID_1,
             isDated = True,
             year = Consts.ISSUE.YEAR_1
@@ -36,6 +38,7 @@ class test_numista_model(TestCase):
         issue.save()
 
         issue=Issue(
+            coin = FixtureCoins.COIN_1,
             numistaId = Consts.ISSUE.NUMISTA_ID_1,
             isDated = True,
             year = Consts.ISSUE.YEAR_2
@@ -46,6 +49,7 @@ class test_numista_model(TestCase):
 
     def test_add_duplicate_year(self):
         issue=Issue(
+            coin = FixtureCoins.COIN_1,
             numistaId = Consts.ISSUE.NUMISTA_ID_1,
             isDated = True,
             year = Consts.ISSUE.YEAR_1
@@ -53,6 +57,7 @@ class test_numista_model(TestCase):
         issue.save()
 
         issue=Issue(
+            coin = FixtureCoins.COIN_1,
             numistaId = Consts.ISSUE.NUMISTA_ID_2,
             isDated = True,
             year = Consts.ISSUE.YEAR_1
