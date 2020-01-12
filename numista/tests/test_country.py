@@ -9,8 +9,6 @@ class test_numista_model(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # FixtureLanguages.init_languages()
-        # FixtureMessages.init_messages()
 
       
     def test_add(self):

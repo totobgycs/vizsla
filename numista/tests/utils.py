@@ -19,6 +19,7 @@ class Consts:
     class COUNTRY(__code_base, __name_base): pass
     class CURRENCY(__numista_id_base, __name_base): pass
     class ISSUE(__numista_id_base, __year_base): pass
+    class COIN(__numista_id_base, __name_base): pass
 
 
 
