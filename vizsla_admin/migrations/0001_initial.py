@@ -5,18 +5,19 @@ from os import environ
 
 
 def generate_superuser(apps, schema_editor):
-        from django.contrib.auth.models import User
+    # User = apps.get_model('auth', 'User', require_ready=False)
+    from django.contrib.auth.models import User
 
-        DJANGO_SU_NAME = environ.get('VIZSLA_SU_NAME', 'fovizsla')
-        DJANGO_SU_EMAIL = environ.get('VIZSLA_SU_EMAIL', 'fovizsla@vizsla.com')
-        DJANGO_SU_PASSWORD = environ.get('VIZSLA_SU_PASSWORD', 'vizsla')
+    DJANGO_SU_NAME = environ.get('VIZSLA_SU_NAME', 'fovizsla')
+    DJANGO_SU_EMAIL = environ.get('VIZSLA_SU_EMAIL', 'fovizsla@vizsla.com')
+    DJANGO_SU_PASSWORD = environ.get('VIZSLA_SU_PASSWORD', 'vizsla')
 
-        superuser = User.objects.create_superuser(
-            username=DJANGO_SU_NAME,
-            email=DJANGO_SU_EMAIL,
-            password=DJANGO_SU_PASSWORD)
+    superuser = User.objects.create_superuser(
+        username=DJANGO_SU_NAME,
+        email=DJANGO_SU_EMAIL,
+        password=DJANGO_SU_PASSWORD)
 
-        superuser.save()
+    superuser.save()
 
 
 class Migration(migrations.Migration):
@@ -25,5 +26,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(generate_superuser)
+        migrations.RunPython(generate_superuser, )
     ]
