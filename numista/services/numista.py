@@ -27,14 +27,37 @@ class NumistaClient:
         return r.json()
 
     def search_coins(self, query, language='en', pages=1, per_page=50):
+        """
+        Search for coins. 
+        Parameters
+        ----------
+            query (str): Coin names to search for
+            languge (str): Language for saerch and response (accepted 'en' and 'fr', default 'en')
+            pages (int): number of pages to return (default 1)
+            per_page (int): results per page (default 50)
+        """
         payload = {'lang': language, 'q': query,
                    'page': pages, 'count': per_page}
         return self.__execute_function(self.NUMISTA_SEARCH_COIN, payload)
 
     def get_coin(self, coin, language='en'):
+        """
+        Get informations of a specific coin. 
+        Parameters
+        ----------
+            coin (str): Numista id of the coin (got from search_coins)
+            languge (str): Language for saerch and response (accepted 'en' and 'fr', default 'en')
+        """
         payload = {'lang': language}
         return self.__execute_function(self.NUMISTA_GET_COIN % coin, payload)
 
     def get_coin_issues(self, coin, language='en'):
+        """
+        Get issue informations of a specific coin. 
+        Parameters
+        ----------
+            coin (str): Numista id of the coin (got from search_coins)
+            languge (str): Language for saerch and response (accepted 'en' and 'fr', default 'en')
+        """
         payload = {'lang': language}
         return self.__execute_function(self.NUMISTA_GET_ISSUES % coin, payload)

@@ -32,8 +32,7 @@ class test_numista_interface(SimpleTestCase):
         Create a mock of Requests get, which returns an error
         Parameters
         ----------
-            code : int
-                The error code to return
+            code (int): The error code to return
         """
         retval_mock = Mock()
         retval_mock.status_code = code
@@ -47,12 +46,9 @@ class test_numista_interface(SimpleTestCase):
         Tests if method_to_test raises an exception when requests.get returns an error code
         Parameters
         ----------
-            mock_request: Mock()
-                mock of requests.get
-            method_to_test : method
-                The method to test
-            *args
-                Parameters transmitted to method_to_test
+            mock_request (Mock()): mock of requests.get
+            method_to_test (method): The method to test
+            *args: Parameters transmitted to method_to_test
         """
         for error in NumistaClient.ERRORS:
             mock_request.get.return_value = self.__error_mock(error)
@@ -64,12 +60,9 @@ class test_numista_interface(SimpleTestCase):
         Tests if method_to_test returns the json part of the response given by requestes.get 
         Parameters
         ----------
-            mock_request: Mock()
-                mock of requests.get
-            method_to_test : method
-                The method to test
-            *args
-                Parameters transmitted to method_to_test
+            mock_request (Mock): mock of requests.get
+            method_to_test (method): The method to test
+            *args: Parameters transmitted to method_to_test
         """
         mock_request.get.return_value = self.__ok_mock()
         result = method_to_test(*args)
@@ -80,18 +73,12 @@ class test_numista_interface(SimpleTestCase):
         Tests if method_to_test called with param and **kwargs will call requestes.get with the expected parameters
         Parameters
         ----------
-            mock_request: Mock()
-                mock of requests.get
-            method_to_test : method
-                The method to test
-            param: str
-                The parameter of method_to_test
-            expected_function: str
-                The expected endpoint function with which requests.get is called
-            expected_param: kwargs
-                The expected extra params with which requests.get is called
-            **kwargs
-                Parameters transmitted to method_to_test
+            mock_request (Mock): mock of requests.get
+            method_to_test (method): The method to test
+            param: The parameter of method_to_test
+            expected_function (str): The expected endpoint function with which requests.get is called
+            expected_param (kwargs): The expected extra params with which requests.get is called
+            **kwargs: Parameters transmitted to method_to_test
         """
         mock_request.get.return_value = self.__ok_mock()
         method_to_test(param, **kwargs)
