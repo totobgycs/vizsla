@@ -2,6 +2,7 @@ from django.test import SimpleTestCase
 from unittest.mock import patch, Mock
 
 from numista.services.numista import NumistaClient
+from .utils import Consts
 
 
 class test_numista_interface(SimpleTestCase):
@@ -204,4 +205,13 @@ class test_numista_interface(SimpleTestCase):
         self.__raises_exception_on_error(
             mock_request, self.numistaClient.search_coins, self.COIN_PARAM)
 
+    # endregion
+    # region UnMocked
+    def test_unmocked_get_coin(self):
+        # use envvar NUMISTA_KEY as api_key
+        numistaClient = NumistaClient()
+        result = numistaClient.get_coin(Consts.JSON.VIZSLA_ID)
+        self.assertEqual(result['title'], '2000 Forint (Hungarian Vizsla)')
+        import json
+        self.assertJSONEqual(json.dumps(result), Consts.JSON.VIZSLA_TEXT)
     # endregion

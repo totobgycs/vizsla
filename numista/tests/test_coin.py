@@ -71,3 +71,4 @@ class test_numista_coin(TestCase):
         result = Coin.objects.filter(title=Consts.COIN.NAME_1).all()
 
         self.assertEqual(result.count(), 2)
+
