@@ -40,5 +40,5 @@ class FixtureCoins:
             numistaId=Consts.COIN.NUMISTA_ID_1,
             title=Consts.COIN.NAME_1,
             country=cls.COUNTRY_1,
-            valueCurrency=cls.CURRENCY_1
+            value_currency=cls.CURRENCY_1
         )

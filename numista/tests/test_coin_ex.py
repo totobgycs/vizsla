@@ -39,15 +39,15 @@ class test_numista_coin(TestCase):
         self.assertEqual(
             coin_ex.coinType, Consts.JSON.COIN_JSON['type'])
         self.assertEqual(
-            coin_ex.valueText, Consts.JSON.COIN_JSON['value']['text'])
+            coin_ex.value_text, Consts.JSON.COIN_JSON['value']['text'])
         self.assertEqual(
-            coin_ex.valueCurrency.numistaId, Consts.JSON.COIN_JSON['value']['currency']['id'])
+            coin_ex.value_currency.numistaId, Consts.JSON.COIN_JSON['value']['currency']['id'])
         self.assertEqual(
-            coin_ex.valueCurrency.name, Consts.JSON.COIN_JSON['value']['currency']['name'])
+            coin_ex.value_currency.name, Consts.JSON.COIN_JSON['value']['currency']['name'])
         self.assertEqual(
             coin_ex.shape, Consts.JSON.COIN_JSON['shape'])
         self.assertEqual(
-            coin_ex.composition, Consts.JSON.COIN_JSON['composition']['text'])
+            coin_ex.composition_text, Consts.JSON.COIN_JSON['composition']['text'])
         self.assertEqual(
             coin_ex.weight, Consts.JSON.COIN_JSON['weight'])
         self.assertEqual(
@@ -68,5 +68,5 @@ class test_numista_coin(TestCase):
         self.assertEqual(country.name, coin_ex.country.name)
 
         currency = Currency.objects.get(
-            numistaId=coin_ex.valueCurrency.numistaId)
-        self.assertEqual(currency.name, coin_ex.valueCurrency.name)
+            numistaId=coin_ex.value_currency.numistaId)
+        self.assertEqual(currency.name, coin_ex.value_currency.name)
