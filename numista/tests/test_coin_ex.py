@@ -21,8 +21,6 @@ class test_numista_coin(TestCase):
         The country entity is pre-created in fixture, the currency needs to be created by the
         tested method along with the coin entity.
         """
-        from flatten_json import flatten
-        t1= flatten(Consts.JSON.COIN_JSON)
         coin_ex = CoinEx.Coin_from_json(Consts.JSON.COIN_TEXT)
         self.assertEqual(
             coin_ex.numistaId, Consts.JSON.COIN_JSON['id'])

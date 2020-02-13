@@ -17,29 +17,25 @@ class CoinEx(Coin):
         curr , _ = Currency.objects.get_or_create(numistaId=obj['value']['currency']['id'], defaults=obj['value']['currency'])
         result = cls(
             numistaId=obj['id'],
-            title=obj['title']
+            title=obj['title'],
+            url=obj['url'],
+            country=cntry,
+            minYear=obj['minYear'],
+            maxYear=obj['maxYear'],
+            coinType=obj['type'],
+            valueText=obj['value']['text'],
+            valueCurrency=curr,
+            shape=obj['shape'],
+            composition=obj['composition']['text'],
+            weight=obj['weight'],
+            size=obj['size'],
+            thickness=obj.get('thickness', None),
+            obverse_picture=obj['obverse']['picture'],
+            obverse_thumbnail=obj['obverse']['thumbnail'],
+            reverse_picture=obj['reverse']['picture'],
+            reverse_thumbnail=obj['reverse']['thumbnail']
         )
-        
-        for f in Coin._meta.get_fields(include_hidden=True):
-            pass
-
-        #     url=obj['url'],
-        #     country=cntry,
-        #     minYear=obj['minYear'],
-        #     maxYear=obj['maxYear'],
-        #     coinType=obj['type'],
-        #     valueText=obj['value']['text'],
-        #     valueCurrency=curr,
-        #     shape=obj['shape'],
-        #     composition=obj['composition']['text'],
-        #     weight=obj['weight'],
-        #     size=obj['size'],
-        #     thickness=obj.get('thickness', None),
-        #     obverse_picture=obj['obverse']['picture'],
-        #     obverse_thumbnail=obj['obverse']['thumbnail'],
-        #     reverse_picture=obj['reverse']['picture'],
-        #     reverse_thumbnail=obj['reverse']['thumbnail']
-        # )
+        return result
 
     @classmethod
     def Coin_from_numista_id(cls, numista_id):
