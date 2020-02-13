@@ -1,5 +1,5 @@
-from enum import Enum
 import requests
+from vizsla import settings
 
 
 class NumistaClient:
@@ -16,12 +16,15 @@ class NumistaClient:
         429	: 'Quota exceeded',
     }
 
-    def __init__(self, api_key):
+    def __init__(self, api_key=None):
+        if api_key == None:
+            api_key = settings.NUMISTA_KEY
         self.api_key = api_key
         self.HEADER = {'Numista-API-Key': api_key}
 
     def __execute_function(self, function, params):
-        r = requests.get(self.NUMISTA_URL + function, headers=self.HEADER, params=params)
+        r = requests.get(
+            self.NUMISTA_URL + function, headers=self.HEADER, params=params)
         if r.status_code in self.ERRORS:
             raise Exception(self.ERRORS[r.status_code])
         return r.json()
