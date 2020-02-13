@@ -30,6 +30,7 @@ class Coin(models.Model):
     minYear = models.IntegerField(null=True)
     maxYear = models.IntegerField(null=True)
     coinType = models.CharField(max_length=200)
+    coinType.json_id = 'type'
     value_text = models.CharField(max_length=200)
     value_currency = models.ForeignKey('Currency', on_delete=models.PROTECT)
     shape = models.CharField(max_length=200)

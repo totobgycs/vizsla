@@ -15,26 +15,33 @@ class CoinEx(Coin):
         obj = json.loads(coin_json)
         cntry, _ = Country.objects.get_or_create(code=obj['country']['code'], defaults=obj['country'])
         curr , _ = Currency.objects.get_or_create(numistaId=obj['value']['currency']['id'], defaults=obj['value']['currency'])
+        flat_obj= flatten(obj)
         result = cls(
             numistaId=obj['id'],
-            title=obj['title'],
-            url=obj['url'],
-            country=cntry,
-            minYear=obj['minYear'],
-            maxYear=obj['maxYear'],
-            coinType=obj['type'],
-            value_text=obj['value']['text'],
-            value_currency=curr,
-            shape=obj['shape'],
-            composition_text=obj['composition']['text'],
-            weight=obj['weight'],
-            size=obj['size'],
-            thickness=obj.get('thickness', None),
-            obverse_picture=obj['obverse']['picture'],
-            obverse_thumbnail=obj['obverse']['thumbnail'],
-            reverse_picture=obj['reverse']['picture'],
-            reverse_thumbnail=obj['reverse']['thumbnail']
+            title=obj['title']
         )
+
+        for f in Coin._meta.get_fields():
+            if (f.name in flat_obj) and (getattr(result, f.name) in f.empty_values):
+                setattr(result, f.name, flat_obj[f.name])
+
+        #     url=obj['url'],
+        #     country=cntry,
+        #     minYear=obj['minYear'],
+        #     maxYear=obj['maxYear'],
+        #     coinType=obj['type'],
+        #     value_text=obj['value']['text'],
+        #     value_currency=curr,
+        #     shape=obj['shape'],
+        #     composition_text=obj['composition']['text'],
+        #     weight=obj['weight'],
+        #     size=obj['size'],
+        #     thickness=obj.get('thickness', None),
+        #     obverse_picture=obj['obverse']['picture'],
+        #     obverse_thumbnail=obj['obverse']['thumbnail'],
+        #     reverse_picture=obj['reverse']['picture'],
+        #     reverse_thumbnail=obj['reverse']['thumbnail']
+        # )
         return result
 
     @classmethod
