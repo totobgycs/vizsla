@@ -24,6 +24,7 @@ class Coin(models.Model):
     #     reverse_picture	string          URL to the picture of the side of the coin
     #     reverse_thumbnail	string          URL to the thumbnail of the picture of the side of the coin
     numistaId = models.IntegerField(unique=True)
+    numistaId.json_id = 'id'
     url = models.TextField()
     title = models.TextField()
     country = models.ForeignKey('Country', on_delete=models.PROTECT)
