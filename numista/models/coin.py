@@ -24,16 +24,18 @@ class Coin(models.Model):
     #     reverse_picture	string          URL to the picture of the side of the coin
     #     reverse_thumbnail	string          URL to the thumbnail of the picture of the side of the coin
     numistaId = models.IntegerField(unique=True)
+    numistaId.json_id = 'id'
     url = models.TextField()
     title = models.TextField()
     country = models.ForeignKey('Country', on_delete=models.PROTECT)
     minYear = models.IntegerField(null=True)
     maxYear = models.IntegerField(null=True)
     coinType = models.CharField(max_length=200)
-    valueText = models.CharField(max_length=200)
-    valueCurrency = models.ForeignKey('Currency', on_delete=models.PROTECT)
+    coinType.json_id = 'type'
+    value_text = models.CharField(max_length=200)
+    value_currency = models.ForeignKey('Currency', on_delete=models.PROTECT)
     shape = models.CharField(max_length=200)
-    composition = models.CharField(max_length=200)
+    composition_text = models.CharField(max_length=200)
     weight = models.DecimalField(max_digits=7, decimal_places=3, null=True)
     size = models.DecimalField(max_digits=7, decimal_places=3, null=True)
     thickness = models.DecimalField(max_digits=7, decimal_places=3, null=True)

@@ -21,7 +21,7 @@ class test_numista_coin(TestCase):
             numistaId=Consts.COIN.NUMISTA_ID_1,
             title=Consts.COIN.NAME_1,
             country=FixtureCountries.COUNTRY_1,
-            valueCurrency=FixtureCurrencies.CURRENCY_1
+            value_currency=FixtureCurrencies.CURRENCY_1
         )
         coin.save()
 
@@ -37,7 +37,7 @@ class test_numista_coin(TestCase):
             numistaId=Consts.ISSUE.NUMISTA_ID_1,
             title=Consts.COIN.NAME_1,
             country=FixtureCountries.COUNTRY_1,
-            valueCurrency=FixtureCurrencies.CURRENCY_1
+            value_currency=FixtureCurrencies.CURRENCY_1
         )
         coin.save()
 
@@ -45,7 +45,7 @@ class test_numista_coin(TestCase):
             numistaId=Consts.ISSUE.NUMISTA_ID_1,
             title=Consts.COIN.NAME_2,
             country=FixtureCountries.COUNTRY_1,
-            valueCurrency=FixtureCurrencies.CURRENCY_1
+            value_currency=FixtureCurrencies.CURRENCY_1
         )
 
         with self.assertRaises(django.db.utils.IntegrityError):
@@ -56,7 +56,7 @@ class test_numista_coin(TestCase):
             numistaId=Consts.ISSUE.NUMISTA_ID_1,
             title=Consts.COIN.NAME_1,
             country=FixtureCountries.COUNTRY_1,
-            valueCurrency=FixtureCurrencies.CURRENCY_1
+            value_currency=FixtureCurrencies.CURRENCY_1
         )
         coin.save()
 
@@ -64,7 +64,7 @@ class test_numista_coin(TestCase):
             numistaId=Consts.ISSUE.NUMISTA_ID_2,
             title=Consts.COIN.NAME_1,
             country=FixtureCountries.COUNTRY_1,
-            valueCurrency=FixtureCurrencies.CURRENCY_1
+            value_currency=FixtureCurrencies.CURRENCY_1
         )
         coin.save()
 

@@ -38,6 +38,7 @@ class Consts:
         COMPOSITION = 'Composition'
         WEIGHT = 10.5
         SIZE = 29
+        THICKNESS = 1.3
         OBVERSE_PICTURE = 'Obverse picture'
         OBVERSE_THUMBNAIL = 'Obverse thumbnail'
         REVERSE_PICTURE = 'Reverse picture'
@@ -80,8 +81,97 @@ class Consts:
                     "thumbnail": cls.REVERSE_THUMBNAIL
                 }
             }
+            cls.COIN_JSON_NO_COUNTRY = {
+                "id": cls.NUMISTA_ID_1,
+                "url": cls.URL,
+                "title": cls.TITLE,
+                "minYear": cls.YEAR_1,
+                "maxYear": cls.YEAR_2,
+                "type": cls.TYPE,
+                "value": {
+                    "text": cls.VALUE,
+                    "currency": {
+                        "id": cls.NUMISTA_ID_2,
+                        "name": cls.NAME_2
+                    }
+                },
+                "shape": cls.SHAPE,
+                "composition": {
+                    "text": cls.COMPOSITION
+                },
+                "weight": cls.WEIGHT,
+                "size": cls.SIZE,
+                "obverse": {
+                    "picture": cls.OBVERSE_PICTURE,
+                    "thumbnail": cls.OBVERSE_THUMBNAIL
+                },
+                "reverse": {
+                    "picture": cls.REVERSE_PICTURE,
+                    "thumbnail": cls.REVERSE_THUMBNAIL
+                }
+            }
+            cls.COIN_JSON_VALUE_NO_CURRENCY = {
+                "id": cls.NUMISTA_ID_1,
+                "url": cls.URL,
+                "title": cls.TITLE,
+                "country": {
+                    "code": cls.CODE_1,
+                    "name": cls.NAME_1
+                },
+                "minYear": cls.YEAR_1,
+                "maxYear": cls.YEAR_2,
+                "type": cls.TYPE,
+                "value": {
+                    "text": cls.VALUE,
+                },
+                "shape": cls.SHAPE,
+                "composition": {
+                    "text": cls.COMPOSITION
+                },
+                "weight": cls.WEIGHT,
+                "size": cls.SIZE,
+                "obverse": {
+                    "picture": cls.OBVERSE_PICTURE,
+                    "thumbnail": cls.OBVERSE_THUMBNAIL
+                },
+                "reverse": {
+                    "picture": cls.REVERSE_PICTURE,
+                    "thumbnail": cls.REVERSE_THUMBNAIL
+                }
+            }
+            cls.COIN_JSON_NO_VALUE = {
+                "id": cls.NUMISTA_ID_1,
+                "url": cls.URL,
+                "title": cls.TITLE,
+                "country": {
+                    "code": cls.CODE_1,
+                    "name": cls.NAME_1
+                },
+                "minYear": cls.YEAR_1,
+                "maxYear": cls.YEAR_2,
+                "type": cls.TYPE,
+                "shape": cls.SHAPE,
+                "composition": {
+                    "text": cls.COMPOSITION
+                },
+                "weight": cls.WEIGHT,
+                "size": cls.SIZE,
+                'thickness': cls.THICKNESS,
+                "obverse": {
+                    "picture": cls.OBVERSE_PICTURE,
+                    "thumbnail": cls.OBVERSE_THUMBNAIL
+                },
+                "reverse": {
+                    "picture": cls.REVERSE_PICTURE,
+                    "thumbnail": cls.REVERSE_THUMBNAIL
+                }
+            }
             import json
             cls.COIN_TEXT = json.dumps(cls.COIN_JSON)
+            cls.COIN_TEXT_NO_COUNTRY = json.dumps(cls.COIN_JSON_NO_COUNTRY)
+            cls.COIN_TEXT_VALUE_NO_CURRENCY = json.dumps(
+                cls.COIN_JSON_VALUE_NO_CURRENCY)
+            cls.COIN_TEXT_NO_VALUE = json.dumps(cls.COIN_JSON_NO_VALUE)
 
         @classmethod
         def init_vizsla(cls):
