@@ -43,7 +43,7 @@ class NumistaClient:
                    'page': pages, 'count': per_page}
         return self.__execute_function(self.NUMISTA_SEARCH_COIN, payload)
 
-    def get_coin(self, coin, language='en'):
+    def get_coin(self, coin, language='en') ->  dict:
         """
         Get informations of a specific coin. 
         Parameters
@@ -54,7 +54,7 @@ class NumistaClient:
         payload = {'lang': language}
         return self.__execute_function(self.NUMISTA_GET_COIN % coin, payload)
 
-    def get_coin_issues(self, coin, language='en'):
+    def get_coin_issues(self, coin, language='en') ->  dict:
         """
         Get issue informations of a specific coin. 
         Parameters

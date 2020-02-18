@@ -1,7 +1,6 @@
 from django.db import models
 
-# Create your models here.
-
+from .coin_manager import CoinManager
 
 class Coin(models.Model):
     # coin
@@ -44,8 +43,12 @@ class Coin(models.Model):
     reverse_picture = models.TextField()
     reverse_thumbnail = models.TextField()
 
+    objects = CoinManager()
+    
     def __str__(self):
         return '{r.numistaId}: {r.title}'.format(r=self)
 
     class Meta:
         db_table = 'numista\".\"coin'
+
+
