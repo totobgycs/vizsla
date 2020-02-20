@@ -166,12 +166,6 @@ class Consts:
                     "thumbnail": cls.REVERSE_THUMBNAIL
                 }
             }
-            import json
-            cls.COIN_TEXT = json.dumps(cls.COIN_JSON)
-            cls.COIN_TEXT_NO_COUNTRY = json.dumps(cls.COIN_JSON_NO_COUNTRY)
-            cls.COIN_TEXT_VALUE_NO_CURRENCY = json.dumps(
-                cls.COIN_JSON_VALUE_NO_CURRENCY)
-            cls.COIN_TEXT_NO_VALUE = json.dumps(cls.COIN_JSON_NO_VALUE)
 
         @classmethod
         def init_vizsla(cls):

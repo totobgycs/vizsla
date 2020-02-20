@@ -13,7 +13,7 @@ class test_numista_coin(TestCase):
     databases = {'numista'}
 
     coin_manager = CoinManager()
-    coin_manager.model=Coin
+    coin_manager.model = Coin
 
     @classmethod
     def setUpClass(cls):
@@ -51,7 +51,6 @@ class test_numista_coin(TestCase):
         self.assertEqual(
             coin_ex.reverse_thumbnail, json['reverse']['thumbnail'])
 
-
     def test_coin_from_json_creates_country_and_currency(self):
         """
         Tests coin entity creation from json without mocking the currency and country entities.
@@ -59,7 +58,7 @@ class test_numista_coin(TestCase):
         tested method along with the coin entity.
         """
         json = Consts.JSON.COIN_JSON
-        coin_ex=self.coin_manager.get_from_json(json)
+        coin_ex = self.coin_manager.get_from_json(json)
 
         self.__assert_common(coin_ex, json)
 
@@ -88,7 +87,7 @@ class test_numista_coin(TestCase):
         tested method along with the coin entity.
         """
         json = Consts.JSON.COIN_JSON_NO_COUNTRY
-        coin_ex=self.coin_manager.get_from_json(json)
+        coin_ex = self.coin_manager.get_from_json(json)
 
         self.__assert_common(coin_ex, json)
 
@@ -106,7 +105,7 @@ class test_numista_coin(TestCase):
         tested method along with the coin entity.
         """
         json = Consts.JSON.COIN_JSON_VALUE_NO_CURRENCY
-        coin_ex=self.coin_manager.get_from_json(json)
+        coin_ex = self.coin_manager.get_from_json(json)
 
         self.__assert_common(coin_ex, json)
 
@@ -124,7 +123,7 @@ class test_numista_coin(TestCase):
         tested method along with the coin entity.
         """
         json = Consts.JSON.COIN_JSON_NO_VALUE
-        coin_ex=self.coin_manager.get_from_json(json)
+        coin_ex = self.coin_manager.get_from_json(json)
 
         self.__assert_common(coin_ex, json)
 
@@ -135,11 +134,16 @@ class test_numista_coin(TestCase):
         self.assertEqual(
             coin_ex.thickness, json['thickness'])
 
-    @patch('numista.services.numista.NumistaClient')
+    @patch('numista.models.coin_manager.NumistaClient')
     def test_coin_from_numista_id(self, mock_numista_client):
-        mock_numista_client.get_coin.return_value=Consts.JSON.COIN_TEXT
-        coin_ex=self.coin_manager.get_from_numista_id(Consts.JSON.COIN_JSON['id'])
+        """
+        Test coin entry creation from numista id
+        """
+        json = Consts.JSON.COIN_JSON
+        mock_numista_client.return_value.get_coin.return_value = json
+        coin_ex = self.coin_manager.get_from_numista_id(json['id'])
 
+        self.__assert_common(coin_ex, json)
 
     def test_integrated_coin_from_json(self):
         """
@@ -147,7 +151,26 @@ class test_numista_coin(TestCase):
         """
 
         json = Consts.JSON.COIN_JSON
-        coin_ex=self.coin_manager.get_from_json(json)
+        coin_ex = Coin.objects.get_from_json(json)
 
         self.__assert_common(coin_ex, json)
 
+    @patch('numista.models.coin_manager.NumistaClient')
+    def test_integrated_coin_from_numista_id(self, mock_numista_client):
+        """
+        Test coin entity creation together with the Coin model from numista id
+        """
+        json = Consts.JSON.COIN_JSON
+        mock_numista_client.return_value.get_coin.return_value = json
+        coin_ex = Coin.objects.get_from_numista_id(json['id'])
+
+        self.__assert_common(coin_ex, json)
+
+    def test_e2e_integrated_coin_from_numista_id(self):
+        """
+        Test coin entity creation together with the Coin model from numista id
+        """
+        json = Consts.JSON.VIZSLA_JSON
+        coin_ex = Coin.objects.get_from_numista_id(json['id'])
+
+        self.__assert_common(coin_ex, json)
