@@ -28,7 +28,8 @@ class Consts:
     class COIN(__numista_id_base, __name_base):
         pass
 
-    class JSON(COIN, COUNTRY, CURRENCY, __year_base):
+    # region JSON_COIN
+    class JSON_COIN(COIN, COUNTRY, CURRENCY, __year_base):
 
         TITLE = 'Title'
         URL = 'Url'
@@ -195,11 +196,11 @@ class Consts:
                 "size": 34,
                 "obverse": {
                     "picture": "https://en.numista.com/catalogue/photos/hongrie/4118-original.jpg",
-                    "thumbnail": "https://en.numista.com/catalogue/photos/hongrie/4118-135.jpg"
+                    "thumbnail": "https://en.numista.com/catalogue/photos/hongrie/4118-180.jpg"
                 },
                 "reverse": {
                     "picture": "https://en.numista.com/catalogue/photos/hongrie/4119-original.jpg",
-                    "thumbnail": "https://en.numista.com/catalogue/photos/hongrie/4119-135.jpg"
+                    "thumbnail": "https://en.numista.com/catalogue/photos/hongrie/4119-180.jpg"
                 }
             }
 
@@ -207,9 +208,63 @@ class Consts:
             cls.VIZSLA_TEXT = json.dumps(cls.VIZSLA_JSON)
 
     # as there are no class constructors we have to call the initialisation *after* the class is defined.
-    JSON.init_json()
-    JSON.init_vizsla()
+    JSON_COIN.init_json()
+    JSON_COIN.init_vizsla()
 
+    # endregion
+
+    # region JSON_ISSUE
+    class JSON_ISSUE(ISSUE, __year_base):
+
+    # numistaId = models.IntegerField(unique=True)
+    # numistaId.json_id = 'id'
+    # isDated = models.BooleanField()
+    # year = models.IntegerField()
+    # calendar = models.CharField(max_length=200)
+    # gregorianYear = models.IntegerField(null=True)
+    # minYear = models.IntegerField(null=True)
+    # maxYear = models.IntegerField(null=True)
+    # mintLetter = models.CharField(max_length=20)
+    # comment = models.TextField()
+
+        MAX_YEAR_1 = 2010
+        MIN_YEAR_1 = 2009
+        MAX_YEAR_2 = 2008
+        MIN_YEAR_2 = 2007
+        MINT_LETTER_1 = 'B'
+        MINT_LETTER_2 = 'D'
+        COMMENT_1 = '(fr) Coincard'
+        COMMENT_2 = 'BU'
+
+        @classmethod
+        def init_json(cls):
+            cls.ISSUE_JSON_FULL = {
+                    "id": cls.NUMISTA_ID_1,
+                    "isDated": True,
+                    "year": cls.YEAR_1,
+                    "calendar": "Gregorian",
+                    "gregorianYear": cls.YEAR_2,
+                    "minYear": cls.MIN_YEAR_1,
+                    "maxYear": cls.MAX_YEAR_1,
+                    "mintLetter": cls.MINT_LETTER_1,
+                    "comment": "(fr) Coincard"
+                }
+
+            cls.ISSUE_JSON_NO_MINMAX = {
+                    "id": cls.NUMISTA_ID_2,
+                    "isDated": True,
+                    "year": cls.YEAR_2,
+                    "calendar": "Gregorian",
+                    "gregorianYear": cls.YEAR_1,
+                    "comment": cls.COMMENT_2
+                }
+            
+            cls.ONE_ISSUE_JSON = [cls.ISSUE_JSON_FULL]
+            cls.TWO_ISSUES_JSON = [cls.ISSUE_JSON_FULL, cls.ISSUE_JSON_NO_MINMAX]
+
+    JSON_ISSUE.init_json()
+
+    # endregion
 
 class RunOnce:
     def __init__(self, func):

@@ -210,8 +210,8 @@ class test_numista_interface(SimpleTestCase):
     def test_unmocked_get_coin(self):
         # use envvar NUMISTA_KEY as api_key
         numistaClient = NumistaClient()
-        result = numistaClient.get_coin(Consts.JSON.VIZSLA_ID)
+        result = numistaClient.get_coin(Consts.JSON_COIN.VIZSLA_ID)
         self.assertEqual(result['title'], '2000 Forint (Hungarian Vizsla)')
         import json
-        self.assertJSONEqual(json.dumps(result), Consts.JSON.VIZSLA_TEXT)
+        self.assertJSONEqual(json.dumps(result), Consts.JSON_COIN.VIZSLA_TEXT)
     # endregion
