@@ -25,6 +25,7 @@ class Issue(models.Model):
     #         Comment about the issue}
     coin = models.ForeignKey('Coin', on_delete=models.CASCADE)
     numistaId = models.IntegerField(unique=True)
+    numistaId.json_id = 'id'
     isDated = models.BooleanField()
     year = models.IntegerField()
     calendar = models.CharField(max_length=200)
