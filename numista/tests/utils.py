@@ -49,6 +49,14 @@ class Consts:
 
         @classmethod
         def init_json(cls):
+            cls.COIN_JSON_MINIMAL_1 = {
+                "id": cls.NUMISTA_ID_1,
+                "title": cls.TITLE
+            }
+            cls.COIN_JSON_MINIMAL_2 = {
+                "id": cls.NUMISTA_ID_2,
+                "title": cls.TITLE
+            }
             cls.COIN_JSON = {
                 "id": cls.NUMISTA_ID_1,
                 "url": cls.URL,
