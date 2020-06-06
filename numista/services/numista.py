@@ -1,5 +1,5 @@
 import requests
-from vizsla import settings
+from  numista import settings
 
 
 class NumistaClient:

@@ -27,5 +27,5 @@ class test_numista_coin_info_mnager(TestCase):
         self.assertDictEqual(coin_res, coin_info_json)
         self.assertDictEqual(issue_res[0], coin_issues_json[0])
 
-    @patch('coin_info_manager.get_from_numista_id')
-    def test_
+    # @patch('coin_info_manager.get_from_numista_id')
+    # def test_

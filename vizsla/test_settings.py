@@ -7,10 +7,14 @@ import os
 import django_heroku
 from django.utils.crypto import get_random_string
 
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
 SECRET_KEY = os.environ.get('SECRET_KEY', get_random_string(50, chars))
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +35,7 @@ INSTALLED_APPS = [
     'coincatalog',
     'numista'
 ]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -60,6 +65,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'vizsla.wsgi.application'
+
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -140,3 +146,27 @@ MIGRATION_MODULES = {
     'sessions': None,
     'vizsla_admin': None
 }
+
+# Internationalization
+# https://docs.djangoproject.com/en/3.0/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+

@@ -1,6 +1,6 @@
 from typing import Dict, Tuple, NewType
 from django.db import models
-from vizsla import settings
+from numista import settings
 from numista.services.numista import NumistaClient
 from datetime import date
 
