@@ -25,10 +25,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
 SECRET_KEY = os.environ.get('SECRET_KEY', get_random_string(50, chars))
 
-NUMISTA_KEY = os.environ.get('NUMISTA_KEY', 'No Numista key found')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', True)
+
+# Numista settings
+NUMISTA_KEY = os.environ.get('NUMISTA_KEY', 'No Numista key found')
+NUMISTA_REFRESH_DAYS = os.environ.get('NUMISTA_REFRESH_DAYS', 15)
 
 ALLOWED_HOSTS = ['*']
 
