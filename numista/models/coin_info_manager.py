@@ -36,14 +36,14 @@ class CoinInfoManager(models.Manager):
         """
 
         try:
-            coin_info = self.model.get(numistaId=numista_id)
-            if (date.today - coin_info.lastDownload).days < settings.NUMISTA_REFRESH_DAYS:
+            coin_info = self.model.objects.get(numistaId=numista_id)
+            if (date.today() - coin_info.lastDownload).days < settings.NUMISTA_REFRESH_DAYS:
                 return coin_info.numistaCoin, coin_info.numistaIssues
         except self.model.DoesNotExist:
             pass
 
         numista_coin, numista_issues = self.get_from_numista_id(numista_id)
-        self.model.update_or_create(
+        self.model.objects.update_or_create(
             numistaId=numista_id,
             defaults={
                 'numistaCoin': numista_coin,
