@@ -49,6 +49,14 @@ class Consts:
 
         @classmethod
         def init_json(cls):
+            cls.COIN_JSON_MINIMAL_1 = {
+                "id": cls.NUMISTA_ID_1,
+                "title": cls.TITLE
+            }
+            cls.COIN_JSON_MINIMAL_2 = {
+                "id": cls.NUMISTA_ID_2,
+                "title": cls.TITLE
+            }
             cls.COIN_JSON = {
                 "id": cls.NUMISTA_ID_1,
                 "url": cls.URL,
@@ -238,6 +246,12 @@ class Consts:
 
         @classmethod
         def init_json(cls):
+            cls.ISSUE_JSON_MINIMAL = {
+                    "id": cls.NUMISTA_ID_1,
+                    "isDated": True,
+                    "year": cls.YEAR_1,
+            }
+            
             cls.ISSUE_JSON_FULL = {
                     "id": cls.NUMISTA_ID_1,
                     "isDated": True,
@@ -259,7 +273,7 @@ class Consts:
                     "comment": cls.COMMENT_2
                 }
             
-            cls.ONE_ISSUE_JSON = [cls.ISSUE_JSON_FULL]
+            cls.ONE_ISSUE_JSON = [cls.ISSUE_JSON_MINIMAL]
             cls.TWO_ISSUES_JSON = [cls.ISSUE_JSON_FULL, cls.ISSUE_JSON_NO_MINMAX]
 
     JSON_ISSUE.init_json()
