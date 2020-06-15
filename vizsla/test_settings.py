@@ -114,12 +114,34 @@ DATABASES = {
             'HOST': '127.0.0.1',
             'PORT': '5432',
         }
+    },
+    'coincatalog': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'OPTIONS': {
+            'options': '-c search_path=coincatalog,public'
+        },
+        'NAME': 'vizsla',
+        'USER': 'fovizsla',
+        'PASSWORD': 'fueloep2019',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+        'TEST': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'OPTIONS': {
+                    'options': '-c search_path=coincatalog,public'
+                },
+            'NAME': 'test_vizsla',
+            'USER': 'fovizsla',
+            'PASSWORD': 'fueloep2019',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
     }
 }
 
 DATABASE_ROUTERS = ['vizsla.dbrouters.AppRouter']
 
-APP_SCHEMAS = ['numista']
+APP_SCHEMAS = ['numista', 'coincatalog']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -169,4 +191,3 @@ django_heroku.settings(locals())
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-
